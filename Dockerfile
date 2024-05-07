@@ -22,13 +22,11 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle config set without "development test" && \
     bundle install --jobs=3 --retry=3
 
-COPY package.json yarn.lock ./
-RUN yarn
 # ----------------------------------------------------------------
 FROM dependencies AS development
 
 COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
-COPY --from=dependencies ./node_modules/ node_modules/
+# 開発時にnode_modulesはbindマウントしたいので入れない
 
 CMD ["/bin/sh"]
 
@@ -36,8 +34,10 @@ CMD ["/bin/sh"]
 FROM dependencies AS production
 
 COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
-COPY --from=dependencies ./node_modules/ node_modules/
 
-COPY --chown=$USER_NAME:$GROUP_NAME . ./
+COPY package.json yarn.lock ./
+RUN yarn --production=true
+
+COPY --chown=$USER_NAME . ./
 
 CMD ["bundle", "exec", "rackup"]

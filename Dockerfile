@@ -1,43 +1,66 @@
-FROM ruby:3.1.5-alpine3.19 AS base
+FROM ruby:3.3.6-slim-bookworm AS base
 
 WORKDIR /app
 
-RUN apk add --update --no-cache \
+# 非インタラクティブモードにする (入力待ちでブロックしなくなる)
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+    curl \
     tzdata \
-    nodejs \
-    yarn \
-    build-base
+    build-essential \
+    git
 
-# Setup User -----------------------------------------------------
-ARG USER_UID
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - &&\
+    apt-get update && \
+    apt-get install -y \
+    nodejs
+
+# Setup User
+ARG USER_UID=10001
+ARG USER_GID=10001
 ARG USER_NAME=user
+ARG GROUP_NAME=user
 
-RUN adduser -D -u $USER_UID $USER_NAME
+RUN groupadd -g $USER_GID $GROUP_NAME && \
+    useradd -m -u $USER_UID -g $USER_GID -s /bin/bash $USER_NAME
+
+RUN chown $USER_UID:$USER_GID /app
 
 USER $USER_NAME
+
 # ----------------------------------------------------------------
 FROM base AS dependencies
 
-COPY Gemfile Gemfile.lock ./
+COPY --chown=$USER_NAME:$GROUP_NAME Gemfile Gemfile.lock ./
 RUN bundle config set without "development test" && \
     bundle install --jobs=3 --retry=3
 
 # ----------------------------------------------------------------
+# develepment environement
+# ----------------------------------------------------------------
 FROM dependencies AS development
 
-COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
-# 開発時にnode_modulesはbindマウントしたいので入れない
+# COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
 
-CMD ["/bin/sh"]
+RUN bundle install --jobs=3 --retry=3
 
+COPY --chown=$USER_NAME:$GROUP_NAME package.json package-lock.json ./
+RUN npm install
+
+CMD ["/bin/bash"]
+
+# ----------------------------------------------------------------
+# production environement
 # ----------------------------------------------------------------
 FROM dependencies AS production
 
-COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
+# COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
 
-COPY package.json yarn.lock ./
-RUN yarn --production=true
-
-COPY --chown=$USER_NAME . ./
+COPY --chown=$USER_NAME:$GROUP_NAME . ./
+RUN npm install --omit=dev
 
 CMD ["bundle", "exec", "rackup"]

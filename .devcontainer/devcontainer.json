@@ -1,0 +1,12 @@
+{
+    "name": "Ruby",
+    "dockerComposeFile": "../compose.yaml",
+    "service": "ruby",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "settings": {},
+            "extensions": []
+        }
+    }
+}

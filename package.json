@@ -3,10 +3,12 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "format": "prettier --write .",
-        "check": "prettier --check ."
+        "lint": "biome lint .",
+        "format": "biome lint . --fix && prettier --write .",
+        "check": "prettier --check . && biome check"
     },
     "devDependencies": {
-        "prettier": "^3.5.3"
+        "prettier": "^3.5.3",
+        "@biomejs/biome": "^1.9.4"
     }
 }

@@ -1,3 +1,8 @@
+PATH
+  remote: src/gems/hello
+  specs:
+    hello (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -8,6 +13,7 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.6.1)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     i18n (1.14.6)
@@ -42,6 +48,19 @@ GEM
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.3)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.2)
     rubocop (1.75.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -96,7 +115,9 @@ DEPENDENCIES
   colorize (~> 1.1.0)
   debug (~> 1.10.0)
   faker (~> 3.5.1)
+  hello (~> 0.1.0)!
   rake (~> 13.2.1)
+  rspec (~> 3.13)
   ruby-lsp (~> 0.23.14)
   standard (~> 1.49.0)
 

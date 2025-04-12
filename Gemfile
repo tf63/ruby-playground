@@ -10,4 +10,7 @@ group :development, :test do
   gem "debug", "~> 1.10.0"
   gem "faker", "~> 3.5.1"
   gem "rake", "~> 13.2.1"
+  gem "rspec", "~> 3.13"
 end
+
+gem "hello", "~> 0.1.0", path: "src/gems/hello"

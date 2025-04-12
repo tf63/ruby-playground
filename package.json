@@ -5,7 +5,7 @@
     "scripts": {
         "lint": "biome lint .",
         "format": "biome lint . --fix && prettier --write .",
-        "check": "prettier --check . && biome check"
+        "check": "biome check && prettier --check ."
     },
     "devDependencies": {
         "prettier": "^3.5.3",

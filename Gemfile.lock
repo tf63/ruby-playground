@@ -93,12 +93,12 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  colorize
-  debug
-  faker
-  rake
-  ruby-lsp
-  standard
+  colorize (~> 1.1.0)
+  debug (~> 1.10.0)
+  faker (~> 3.5.1)
+  rake (~> 13.2.1)
+  ruby-lsp (~> 0.23.14)
+  standard (~> 1.49.0)
 
 BUNDLED WITH
    2.5.22

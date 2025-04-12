@@ -11,7 +11,8 @@
 
 - 初期化時に`Gemfile.lock`は空っぽのファイルを使えば良さそう
 
-
 ### 参考
+
 Docker hub
+
 - https://hub.docker.com/_/ruby

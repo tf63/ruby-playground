@@ -3,5 +3,3 @@
 source "https://rubygems.org"
 
 gemspec
-
-gem "awesome_print", "~> 1.9.2"

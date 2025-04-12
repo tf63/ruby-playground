@@ -46,7 +46,8 @@ FROM dependencies AS development
 
 # COPY --from=dependencies /usr/local/bundle/ /usr/local/bundle/
 
-RUN bundle install --jobs=3 --retry=3
+RUN bundle config set without "" && \
+    bundle install --jobs=3 --retry=3
 
 COPY --chown=$USER_NAME:$GROUP_NAME package.json package-lock.json ./
 RUN npm install

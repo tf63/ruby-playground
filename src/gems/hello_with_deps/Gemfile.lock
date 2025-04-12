@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    awesome_print (1.9.2)
+
+PLATFORMS
+  aarch64-linux
+  ruby
+
+DEPENDENCIES
+  awesome_print (~> 1.9.2)
+
+BUNDLED WITH
+   2.5.22

@@ -14,3 +14,5 @@ group :development, :test do
 end
 
 gem "hello", "~> 0.1.0", path: "src/gems/hello"
+
+gem "hello_with_deps", "~> 0.1.0", path: "src/gems/hello_with_deps"

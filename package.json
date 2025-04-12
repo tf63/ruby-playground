@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "check": "prettier --check ."
     },
     "devDependencies": {
         "prettier": "^3.5.3"

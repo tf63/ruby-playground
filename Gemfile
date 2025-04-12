@@ -2,8 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "rails"
-
 group :development, :test do
-    gem 'faker'
-  end
+  gem "ruby-lsp"
+  gem "standard"
+  gem "debug"
+  gem "faker"
+end

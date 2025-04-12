@@ -32,5 +32,10 @@
     "[vue]": {},
     "[svelte]": {},
     "[xml]": {},
-    "[handlebars]": {}
+    "[handlebars]": {},
+    "[ruby]": {
+        "editor.defaultFormatter": "testdouble.vscode-standard-ruby",
+        "editor.insertSpaces": true,
+        "editor.semanticHighlighting.enabled": true
+    }
 }

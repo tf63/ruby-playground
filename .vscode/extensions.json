@@ -1,3 +1,8 @@
 {
-    "recommendations": ["biomejs.biome", "esbenp.prettier-vscode"]
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "oderwat.indent-rainbow",
+        "shopify.ruby-lsp",
+        "testdouble.vscode-standard-ruby"
+    ]
 }

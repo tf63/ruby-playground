@@ -1,5 +1,8 @@
 # Rubyのおためし
 
+- [【VSCode環境構築】Rubyに一から入門してみる](https://zenn.dev/tf63/scraps/92d105c629780b)
+- [【実行環境】Rubyに一から入門してみる](https://zenn.dev/tf63/scraps/6c73e15279baaa)
+
 ```
     # ruby環境の初期化
     bundle init
